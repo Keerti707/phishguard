@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ScanType {
+  URL
+  EMAIL
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  scans     Scan[]
+  createdAt DateTime @default(now())
+}
+
+model Scan {
+  id        String    @id @default(cuid())
+  type      ScanType
+  content   String
+  score     Int
+  risk      String
+  status    String
+  flags     Json
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  scanId    String?
+  type      String
+  details   String
+  createdAt DateTime @default(now())
+}
+
+model Keyword {
+  id        String   @id @default(cuid())
+  value     String   @unique
+  weight    Int      @default(10)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
