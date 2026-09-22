@@ -5,6 +5,14 @@
 
 PhishGuard is a production-ready phishing detection platform for suspicious URLs, emails, and messages. It combines transparent heuristic analysis with an investigation dashboard, local scan history, authentication, admin analytics, and optional external threat-intelligence integrations.
 
+## Live deployments
+
+- **Vercel:** https://phishguard-wsj2.vercel.app
+- **Render:** https://phishguard-75tk.onrender.com
+- **Source:** https://github.com/Keerti707/phishguard
+
+> The free Render instance may take up to a minute to wake after inactivity.
+
 ## Features
 
 - URL checks for transport security, IP hosts, encoded domains, redirect patterns, excessive subdomains, suspicious terms, and URL length
@@ -78,7 +86,7 @@ Future pushes to the production branch trigger Vercel deployments automatically.
 | Setting | Value |
 | --- | --- |
 | Runtime | Node |
-| Build command | `npm ci && npx prisma generate && npm run build` |
+| Build command | `npm install && npx prisma generate && npx prisma db push && npm run build` |
 | Start command | `npm start` |
 | Health path | `/` |
 
