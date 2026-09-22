@@ -1,0 +1,2 @@
+import {Shell} from "@/components/shell";import {Scanner} from "@/components/scanner";
+export default function Page(){return <Shell><div className="mb-7"><p className="text-xs font-bold uppercase tracking-[.2em] text-mint/60">Live inspection</p><h1 className="mt-2 text-4xl font-black tracking-tight">Scan suspicious content</h1><p className="mt-2 max-w-xl text-sm leading-6 text-white/45">Check URLs, email copy, and messages for structural risks and common social-engineering patterns.</p></div><Scanner/></Shell>}
